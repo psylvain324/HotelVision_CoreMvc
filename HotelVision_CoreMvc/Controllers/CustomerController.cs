@@ -29,7 +29,7 @@ namespace HotelVision_CoreMvc.Controllers
             this.customerServiceUpload = customerServiceUpload;
         }
 
-        // GET: Customer
+        // GET: Customer/CustomerIndex
         public async Task<IActionResult> CustomerIndex(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
@@ -75,8 +75,8 @@ namespace HotelVision_CoreMvc.Controllers
             return View(await PaginatedList<Customer>.CreateAsync(customers.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
-        //GET: Customer/Details/{id}
-        [Route("CustomerDetails/{id}")]
+        //GET: Customer/CustomerDetails
+        [Route("/CustomerDetails")]
         public async Task<IActionResult> CustomerDetails(string id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View(customer);
         }
 
-        //GET: Customer/CustomerDelete/{id}
+        //GET: Customer/CustomerDelete
         public async Task<IActionResult> CustomerDelete(int? id)
         {
             if (id == null)
@@ -110,7 +110,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View(customer);
         }
 
-        //POST: Customer/CustomerDelete/{id}
+        //POST: Customer/CustomerDelete
         [HttpPost, ActionName("CustomerDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CustomerDeleteConfirmed(int id)
@@ -129,6 +129,7 @@ namespace HotelVision_CoreMvc.Controllers
         //POST: Customer/CustomerCreate
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("/CustomerCreate")]
         public async Task<IActionResult> CustomerCreate(Customer customer)
         {
             if (ModelState.IsValid)
@@ -140,8 +141,8 @@ namespace HotelVision_CoreMvc.Controllers
             return View(customer);
         }
 
-        //GET: Customer/Edit/{id}
-        [Route("CustomerEdit/{id}")]
+        //GET: Customer/CustomerEdit
+        [Route("/CustomerEdit")]
         public async Task<IActionResult> CustomerEdit(int? id)
         {
             if (id == null)
@@ -157,10 +158,10 @@ namespace HotelVision_CoreMvc.Controllers
             return View(customers);
         }
 
-        //POST: Transaction/UploadCustomer/{file}
+        //POST: Transaction/CustomerUpload
         [HttpPost]
-        [Route("/UploadCustomer/{file}")]
-        public ActionResult UploadTransaction(IFormFile file)
+        [Route("/CustomerUpload")]
+        public ActionResult CustomerUpload(IFormFile file)
         {
             if (file != null)
             {

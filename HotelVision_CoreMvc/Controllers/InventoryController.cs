@@ -108,7 +108,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View(inventoryItem);
         }
 
-        // GET: Inventory/InventoryDelete
+        //GET: Inventory/InventoryDelete
         public IActionResult InventoryDelete(int? id)
         {
             if (id == null)
@@ -125,7 +125,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View(inventoryItem);
         }
 
-        // POST: Invetory/Delete
+        //POST: Inventory/Delete
         [HttpPost, ActionName("InventoryDelete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)

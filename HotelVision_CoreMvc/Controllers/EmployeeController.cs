@@ -18,14 +18,14 @@ namespace HotelVision_CoreMvc.Controllers
             this.logger = logger;
         }
 
-        // GET: EmployeeIndex
+        // GET: Employee/EmployeeIndex
         public IActionResult EmployeeIndex()
         {
             return View(employeesRepository.GetAll());
         }
 
-        // GET: Employee/Details
-        public IActionResult Details(int? id)
+        // GET: Employee/EmployeeDetails
+        public IActionResult EmployeeDetails(int? id)
         {
             if (id == null)
             {
@@ -40,16 +40,16 @@ namespace HotelVision_CoreMvc.Controllers
             return View(employee);
         }
 
-        // GET: Employee/Create
-        public IActionResult Create()
+        // GET: Employee/EmployeeCreate
+        public IActionResult EmployeeCreate()
         {
             return View();
         }
 
-        // POST: Employee/Create
+        // POST: Employee/EmployeeCreate
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateEmployee([Bind("Id,FirstName,LastName,City,State,Country,Zip,Phone,Email")] Employee employee)
+        public IActionResult EmployeeCreate([Bind("Id,FirstName,LastName,City,State,Country,Zip,Phone,Email")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -59,8 +59,8 @@ namespace HotelVision_CoreMvc.Controllers
             return View(employee);
         }
 
-        // GET: Employee/Edit/{id}
-        public IActionResult Edit(int? id)
+        // GET: Employee/EmployeeEdit
+        public IActionResult EmployeeEdit(int? id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace HotelVision_CoreMvc.Controllers
         // POST: Employee/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,City,State,Country,Zip,Phone,Email")] Employee employee)
+        public IActionResult EmployeeEdit(int id, [Bind("Id,FirstName,LastName,City,State,Country,Zip,Phone,Email")] Employee employee)
         {
             if (id != employee.Id)
             {
@@ -107,8 +107,8 @@ namespace HotelVision_CoreMvc.Controllers
             return View(employee);
         }
 
-        // GET: Employee/Delete
-        public IActionResult Delete(int? id)
+        // GET: Employee/EmployeeDelete
+        public IActionResult EmployeeDelete(int? id)
         {
             if (id == null)
             {
@@ -124,7 +124,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View(employee);
         }
 
-        // POST: Employee/Delete/{id}
+        // POST: Employee/EmployeeDelete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
