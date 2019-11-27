@@ -1,0 +1,143 @@
+﻿@model HotelVision_CoreMvc.Models.ViewModels.PaginatedList<Transaction>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Transactions";
+}
+
+<div>
+    <fieldset>
+        <legend>Transactions</legend>
+        <hr />
+        <p>
+            <a asp-controller="Transaction" asp-action="TransactionCreate">Create New Transaction</a>
+        </p>
+        <div>
+            <div>
+                <h5>Upload CSV or XML Transaction data</h5>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<form action="Upload" method="post" enctype="multipart/form-data" >
+    <div>
+        <div class="col-xs-12" style="padding-top: 10px;">
+            <input type="file" name="files" onchange="checkfile(this)" />
+        </div>
+        <br />
+        <div class="col-xs-12">
+            <input type="submit" value="Upload">
+        </div>
+    </div>
+</form>
+<hr />
+<div class="form-actions no-color">
+    <h6>Select Search Field:</h6><br />
+    @using (Html.BeginForm("TransactionSearch", "Transaction"))
+    {
+        @Html.RadioButton("Search", "TransactionId") <span>TransactionId</span> 
+        @Html.RadioButton("Search", "CurrencyCode") <span>Currency Code</span> 
+        @Html.RadioButton("Search", "Status") <span>Status</span><br />
+        <input type="submit" value="Search" />
+    }
+</div>
+<div class="form-actions no-color">
+    <p>
+        <input type="submit" value="Search" /> |
+        <a asp-action="CurrencyIndex">Back to Full List</a>
+    </p>
+</div>
+<br />
+@if (Model.ToList().Count == 0)
+{
+    <p>
+        Currently no records in the Database.
+    </p>
+}
+else
+{
+<form asp-controller="Transaction" asp-action="TransactionIndex" method="get">
+<table class="table">
+    <tr>
+        <th>Transaction ID</th>
+        <th>Amount</th>
+        <th>
+            <a asp-action="TransactionIndex" asp-route-sortOrder="@ViewData["CurrencySortParm"]">CurrencyCode</a>
+        </th>
+        <th>
+            <a asp-action="TransactionIndex" asp-route-sortOrder="@ViewData["TransactionDateSortParm"]">TransactionDate</a>
+        </th>
+        <th>Status</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                <a asp-controller="Currency" asp-action="CurrencyDetails" asp-route-name="@item.CurrencyCode">
+                    @Html.DisplayFor(modelItem => item.CurrencyCode)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-controller="Transaction" asp-action="TransactionEdit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Transaction" asp-action="TransactionDetails" asp-route-id="@item.TransactionId">Details</a> |
+                <a asp-controller="Transaction" asp-action="TransactionDelete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="TransactionIndex"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="TransactionIndex"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+    <div>
+    <h6>Choose Export Format to Download</h6><br />
+    @using (Html.BeginForm("Export", "Transaction"))
+    {
+        @Html.RadioButton("fileType", "Csv") <span>Csv Format</span> 
+        @Html.RadioButton("fileType", "Xml") <span>Xml Format</span><br />
+        <input type="submit" value="Export" />
+    }
+    </div>
+</form>
+}
+
+<script type="text/javascript" language="javascript">
+function checkfile(sender) {
+    var validExts = new Array(".xml", ".csv");
+    var fileExt = sender.value;
+    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+    if (validExts.indexOf(fileExt) < 0) {
+        alert("Invalid file selected, valid files are of " +
+            validExts.toString() + " types.");
+        sender.replaceWith(input.val('').clone(true));
+      return false;
+    }
+    else return true;
+}
+</script>

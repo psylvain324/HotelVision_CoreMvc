@@ -1,0 +1,29 @@
+﻿@model Currency
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Currency Details";
+}
+
+<h2>Details</h2>
+
+<h4>Customer</h4>
+<hr />
+<table class="table">
+    <tr>
+        <th>Currency ID</th>
+        <th>Country Code/th>
+        <th>Currency Code</th>
+    </tr>
+    <tr class="dl-horizontal">
+        <td>
+            @Html.DisplayNameFor(model => model.CurrencyId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CountryCode)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CountryCode)
+        </td>
+    </tr>
+    <a asp-controller="Customer" asp-action="CurrencyIndex">Back to List</a>
+</table>

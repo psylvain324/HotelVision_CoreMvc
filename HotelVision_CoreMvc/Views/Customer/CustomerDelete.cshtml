@@ -1,0 +1,38 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete Customer</h2>
+<hr />
+<h4>Confirm Deletion of Customer Record.</h4>
+<table class="table">
+    <tr>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+    </tr>
+    <tr class="dl-horizontal">
+        <td>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Email)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </td>
+    </tr>
+</table>
+<div>
+    <form asp-controller="Customer" asp-action="CustomerDelete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" asp-controller="Customer" asp-action="CustomerDelete" asp-for="CustomerId" asp-route-id="@Model.CustomerId" />
+            <a asp-controller="Customer" asp-action="CustomerIndex">Back to List</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,133 @@
+﻿@model HotelVision_CoreMvc.Models.ViewModels.PaginatedList<Customer>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Customers";
+}
+
+<div>
+    <fieldset>
+        <legend style="padding-bottom: 5px;">Customers</legend>
+        <hr />
+        <p>
+            <a asp-controller="Customer" asp-action="CustomerCreate">Create New Customer</a>
+        </p>
+        <div style="padding-top: 5px; padding-bottom: 5px;">
+            <div>
+                <h5>Upload CSV or XML Customer data</h5>
+            </div>
+        </div>
+        <div>
+        @using (Html.BeginForm("CustomerIndex", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                <div class="col-xs-12" style="padding-top: 10px;">
+                    <input id="input" name="file" type="file" onchange="checkfile(this)" />
+                </div>
+                <br />
+                <div class="col-xs-12" style="padding-top: 5px;">
+                    <button type="submit" id="btnsubmit" onclick="SubmitButtonOnclick()">Upload Data</button>
+                </div>
+            </div>
+        }
+        </div>
+    </fieldset>
+</div>
+<hr />
+<form asp-controller="Customer" asp-action="CustomerSearch" method="post">
+    <h5>Select Search Parameter</h5>
+    <div style="align-content:center">      
+        <label for="Customer Id" class="radio">
+            <input type="radio" name="rdo" id="customerId" class="hidden"/>
+            <span class="label"></span>Customer Id
+        </label>
+  
+        <label for="Email" class="radio">
+            <input type="radio" name="rdo" id="email" class="hidden"/>
+            <span class="label"></span>Email
+        </label>
+    </div>
+    <div style="padding-top:5px;">
+        <input style="width:300px; padding-right:20px;" type="text" class="rc" placeholder="Search">
+        <input type="submit" value="Search" class="btn btn-default" />
+    </div>
+</form>
+<br />
+@if (Model.ToList().Count == 0)
+{
+    <p>
+        Currently no records in the Database.
+    </p>
+}
+else
+{
+<form asp-controller="Customer" asp-action="CustomerIndex" method="get">
+<table class="table">
+    <tr>
+        <th>Customer ID</th>
+        <th>
+            <a asp-action="CustomerIndex" asp-route-sortOrder="@ViewData["CurrencySortParm"]">Customer Name</a>
+        </th>
+        <th>
+            <a asp-action="CustomerIndex" asp-route-sortOrder="@ViewData["TransactionDateSortParm"]">Email</a>
+        </th>
+        <th>Mobile Number</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+            <td>
+                <a asp-controller="Customer" asp-action="CustomerEdit" asp-route-id="@item.CustomerId">Edit</a> |
+                <a asp-controller="Customer" asp-action="CustomerDetails" asp-route-id="@item.CustomerId">Details</a> |
+                <a asp-controller="Customer" asp-action="CustomerDelete" asp-route-id="@item.CustomerId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="CustomerIndex"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="CustomerIndex"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+</form>
+}
+
+<script type="text/javascript" language="javascript">
+function checkfile(sender) {
+    var validExts = new Array(".xml", ".csv");
+    var fileExt = sender.value;
+    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+    if (validExts.indexOf(fileExt) < 0) {
+        alert("Invalid file selected, valid files are of " +
+            validExts.toString() + " types.");
+        sender.replaceWith(input.val('').clone(true));
+      return false;
+    }
+    else return true;
+}
+</script>
