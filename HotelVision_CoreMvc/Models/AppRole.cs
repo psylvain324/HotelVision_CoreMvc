@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+
 namespace HotelVision_CoreMvc.Models
 {
-    public class AppRole
+    public class AppRole : IdentityRole
     {
-        public AppRole()
-        {
-        }
+
     }
 }

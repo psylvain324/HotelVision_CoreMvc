@@ -48,5 +48,6 @@
     <Folder Include="Views\Inventory\" />
     <Folder Include="Repositories\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Models\Enums\" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,151 @@
+﻿@model HotelVision_CoreMvc.Models.ViewModels.PaginatedList<InventoryItem>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Inventory";
+}
+
+<div>
+    <fieldset>
+        <legend>Inventory</legend>
+        <hr />
+        <p>
+            <a asp-controller="Inventory" asp-action="InventoryCreate">Add Inventory Item</a>
+        </p>
+        <div>
+            <div>
+                <h5>Upload CSV or XML Inventory data</h5>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<form action="Upload" method="post" enctype="multipart/form-data" >
+    <div>
+        <div class="col-xs-12" style="padding-top: 10px;">
+            <input type="file" name="files" onchange="checkfile(this)" />
+        </div>
+        <br />
+        <div class="col-xs-12">
+            <input type="submit" value="Upload">
+        </div>
+    </div>
+</form>
+<hr />
+<div style="padding-top:5px;">
+    <input style="width:300px; padding-right:20px;" type="text" class="rc" placeholder="Search">
+    <input type="submit" value="Search" class="btn btn-default" />
+</div>
+<div class="form-actions no-color">
+    <p>
+        <input type="submit" value="Search" /> |
+        <a asp-action="CurrencyIndex">Back to Full List</a>
+    </p>
+</div>
+<br />
+@if (Model.ToList().Count == 0)
+{
+    <p>
+        Currently no records in the Database.
+    </p>
+}
+else
+{
+<form asp-controller="Inventory" asp-action="InventoryIndex" method="get">
+<table class="table">
+    <tr>
+        <th>
+            <a asp-action="InventoryIndex" asp-route-sortOrder="@ViewData["NameSortParm"]">Item Name</a>
+        </th>
+        <th>Category</th>
+        <th>
+            <a asp-action="InventoryIndex" asp-route-sortOrder="@ViewData["TransactionDateSortParm"]">Current Stock</a>
+        </th>
+        <th>Capacity</th>
+        <th>Remaining Stock</th>
+        <th>Stock Percentage</th>
+        <th>Last Modified Date</th>
+        <th>Restock Scheduled</th>
+        <th>Restock Schedule Date</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RemainingStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestockScheduled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestockScheduleDate)
+            </td>
+            <td>
+                <a asp-controller="Transaction" asp-action="TransactionEdit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Transaction" asp-action="TransactionDetails" asp-route-id="@item.Id">Details</a> |
+                <a asp-controller="Transaction" asp-action="TransactionDelete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="InventoryIndex"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="InventoryIndex"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
+    <div>
+    <h6>Choose Export Format to Download</h6><br />
+    @using (Html.BeginForm("Export", "Inventory"))
+    {
+        @Html.RadioButton("fileType", "Csv") <span>Csv Format</span> 
+        @Html.RadioButton("fileType", "Xml") <span>Xml Format</span><br />
+        <input type="submit" value="Export" />
+    }
+    </div>
+</form>
+}
+
+<script type="text/javascript" language="javascript">
+function checkfile(sender) {
+    var validExts = new Array(".xml", ".csv");
+    var fileExt = sender.value;
+    fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+    if (validExts.indexOf(fileExt) < 0) {
+        alert("Invalid file selected, valid files are of " +
+            validExts.toString() + " types.");
+        sender.replaceWith(input.val('').clone(true));
+      return false;
+    }
+    else return true;
+}
+</script>

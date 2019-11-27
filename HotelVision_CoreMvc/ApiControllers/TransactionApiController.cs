@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using HotelVision_CoreMvc.Data;
 using HotelVision_CoreMvc.Models;
+using HotelVision_CoreMvc.Models.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using HotelVision_CoreMvc.Models.Enums;
 
 namespace HotelVision_CoreMvc.Models
 {
@@ -24,7 +25,7 @@ namespace HotelVision_CoreMvc.Models
         public ItemCategory Category { get; set; }
 
         [MaxLength(5)]
-        [XmlElement("Currenct Stock")]
+        [XmlElement("Current Stock")]
         public int CurrentStock { get; set; }
 
         [MaxLength(5)]
@@ -41,19 +42,27 @@ namespace HotelVision_CoreMvc.Models
         public double StockPercentage { get; set; }
 
         [DataType(DataType.Currency)]
+        [XmlElement("Unit Cost")]
         public double UnitCost { get; set; }
 
-        public bool Restock { get; set; }
+        [DataType(DataType.Currency)]
+        [JsonIgnore]
+        [XmlElement("Total Cost")]
+        public double TotalCost { get; set; }
+
+        [XmlElement("Restock Scheduled")]
+        public bool RestockScheduled { get; set; }
 
         [DataType(DataType.Date)]
-        public string RestockDate { get; set; }
+        [XmlElement("Restock Schedule Date")]
+        public string RestockScheduleDate { get; set; }
 
-    }
+        [DataType(DataType.Date)]
+        [XmlElement("Last Restock")]
+        public string LastRestock { get; set; }
 
-    public enum ItemCategory
-    {
-        Food = 0,
-        Drink = 1,
-
+        [DataType(DataType.DateTime)]
+        [XmlElement("Last Modified Date")]
+        public string LastModifiedDate { get; set; }
     }
 }

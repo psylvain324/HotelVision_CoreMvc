@@ -7,6 +7,7 @@ using System.Xml;
 using CsvHelper;
 using HotelVision_CoreMvc.Data;
 using HotelVision_CoreMvc.Models;
+using HotelVision_CoreMvc.Models.Enums;
 using HotelVision_CoreMvc.Services.Interfaces;
 using log4net;
 using Microsoft.AspNetCore.Http;

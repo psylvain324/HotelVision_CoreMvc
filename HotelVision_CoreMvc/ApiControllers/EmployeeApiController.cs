@@ -16,12 +16,12 @@ namespace HotelVision_CoreMvc.Controllers
 	[ApiController]
     [Route("Api/Employee")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class EmployeeController : Controller
+    public class EmployeeApiController : Controller
     {
 		private readonly IRepository<Employee> employeeRepository;
 		private readonly ILogger<EmployeeController> logger;
 
-		public EmployeeController(IRepository<Employee> employeeRepository, ILogger<EmployeeController> logger)
+		public EmployeeApiController(IRepository<Employee> employeeRepository, ILogger<EmployeeController> logger)
 		{
 			this.employeeRepository = employeeRepository;
 			this.logger = logger;

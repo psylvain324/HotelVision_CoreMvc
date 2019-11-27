@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using HotelVision_CoreMvc.Models;
+using HotelVision_CoreMvc.Models.Enums;
 
 namespace HotelVision_CoreMvc.Data
 {
@@ -126,7 +127,7 @@ namespace HotelVision_CoreMvc.Data
                     var regionCulture = new RegionInfo(distinctCultures[i].LCID);
                     Currency currency = new Currency
                     {
-                        CurrencyId = i,
+                        Id = i,
                         CurrencyCode = regionCulture.ISOCurrencySymbol,
                         CountryCode = regionCulture.EnglishName
                     };
@@ -168,7 +169,7 @@ namespace HotelVision_CoreMvc.Data
             {
                 Currency currency = new Currency
                 {
-                    CurrencyId = i,
+                    Id = i,
                     CurrencyCode = currencyCodes[i]
                 };
 

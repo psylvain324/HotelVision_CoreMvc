@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 using System.Text.Json.Serialization;
 using CsvHelper.Configuration;
+using HotelVision_CoreMvc.Models.Enums;
 
 namespace HotelVision_CoreMvc.Models
 {
@@ -55,13 +56,5 @@ namespace HotelVision_CoreMvc.Models
             Map(m => m.TransactionDate).Index(3);
             Map(m => m.Status).Index(4);
         }
-    }
-
-    public enum TransactionStatus
-    {
-        Approved = 0,
-        Failed = 1,
-        Rejected = 2,
-        Finished = 3
     }
 }

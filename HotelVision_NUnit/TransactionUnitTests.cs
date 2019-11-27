@@ -4,6 +4,7 @@ using System.IO;
 using HotelVision_CoreMvc.Controllers;
 using HotelVision_CoreMvc.Data;
 using HotelVision_CoreMvc.Models;
+using HotelVision_CoreMvc.Models.Enums;
 using HotelVision_CoreMvc.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;

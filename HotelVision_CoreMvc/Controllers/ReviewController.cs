@@ -1,9 +1,8 @@
-﻿using System;
-namespace YorkHarborService.Controllers
+﻿namespace YorkHarborService.Controllers
 {
-    public class ReviewsController
+    public class ReviewController
     {
-        public ReviewsController()
+        public ReviewController()
         {
         }
     }

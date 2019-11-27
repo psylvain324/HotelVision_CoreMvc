@@ -20,7 +20,7 @@ namespace HotelVision_CoreMvc.Controllers
             this.databaseContext = databaseContext;
         }
 
-        // GET: Currency
+        // GET: CurrencyIndex
         public async Task<IActionResult> CurrencyIndex(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
@@ -58,7 +58,7 @@ namespace HotelVision_CoreMvc.Controllers
                     currencies = currencies.OrderByDescending(s => s.CurrencyCode);
                     break;
                 default:
-                    currencies = currencies.OrderBy(s => s.CurrencyId);
+                    currencies = currencies.OrderBy(s => s.Id);
                     break;
             }
 
@@ -66,8 +66,8 @@ namespace HotelVision_CoreMvc.Controllers
             return View(await PaginatedList<Currency>.CreateAsync(currencies.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
-        //GET: Currency/CurrencyDetails/{name}
-        [Route("/CurrencyDetailsByCurrencyCode/{code}")]
+        //GET: Currency/CurrencyDetailsByCurrencyCode
+        [Route("/CurrencyDetailsByCurrencyCode")]
         public IActionResult CurrencyDetailsByCurrencyCode(string code)
         {
             var currencies = from c in databaseContext.Currencies select c;
@@ -84,16 +84,16 @@ namespace HotelVision_CoreMvc.Controllers
             return View(currencies);
         }
 
-        //GET: Currency/CurrencyDetails/{id}
+        //GET: Currency/CurrencyDetails
         [Route("/CurrencyDetails/{id}")]
         public async Task<IActionResult> CurrencyDetails(int id)
         {
             var currencies = from c in databaseContext.Currencies select c;
-            var currency = await currencies.Where(s => s.CurrencyId.Equals(id)).FirstOrDefaultAsync().ConfigureAwait(false);
+            var currency = await currencies.Where(s => s.Id.Equals(id)).FirstOrDefaultAsync().ConfigureAwait(false);
             return View(currency);
         }
 
-        //GET: Currency/CurrencyDelete/{id}
+        //GET: Currency/CurrencyDelete
         public async Task<IActionResult> CurrencyDelete(int? id)
         {
             if (id == null)
@@ -101,7 +101,7 @@ namespace HotelVision_CoreMvc.Controllers
                 return BadRequest();
             }
 
-            var currency = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.CurrencyId == id).ConfigureAwait(false);
+            var currency = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.Id == id).ConfigureAwait(false);
             if (currency == null)
             {
                 return NotFound();
@@ -110,12 +110,12 @@ namespace HotelVision_CoreMvc.Controllers
             return View(currency);
         }
 
-        //POST: Currency/CurrencyDelete/{id}
+        //POST: Currency/CurrencyDelete
         [HttpPost, ActionName("CurrencyDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CurrencyConfirmDelete(int id)
         {
-            var currency = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.CurrencyId == id).ConfigureAwait(false);
+            var currency = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.Id == id).ConfigureAwait(false);
             databaseContext.Currencies.Remove(currency);
             await databaseContext.SaveChangesAsync().ConfigureAwait(false);
             return RedirectToAction("CurrencyIndex");
@@ -126,7 +126,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View();
         }
 
-        // POST: Currency/CurrencyCreate/{currency}
+        // POST: Currency/CurrencyCreate
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CurrencyCreate([Bind("CurrencyId,CurrencyCode,CountryCode")] Currency currency)
@@ -140,7 +140,7 @@ namespace HotelVision_CoreMvc.Controllers
             return View(currency);
         }
 
-        // GET: Currency/CurrencyEdit/{id}
+        // GET: Currency/CurrencyEdit
         [Route("/CurrenctEdit/{id}")]
         public async Task<IActionResult> CurrencyEdit(int? id)
         {
@@ -149,7 +149,7 @@ namespace HotelVision_CoreMvc.Controllers
                 return NotFound();
             }
 
-            var currencies = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.CurrencyId == id).ConfigureAwait(false);
+            var currencies = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.Id == id).ConfigureAwait(false);
             if (currencies == null)
             {
                 return NotFound();

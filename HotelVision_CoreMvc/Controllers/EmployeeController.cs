@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using HotelVision_CoreMvc.Services.Interfaces;
 using HotelVision_CoreMvc.Models;
 
-namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
+namespace HotelVision_CoreMvc.Controllers
 {
     public class EmployeeController : Controller
     {
@@ -18,13 +18,13 @@ namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
             this.logger = logger;
         }
 
-        // GET: Employees
-        public IActionResult Index()
+        // GET: EmployeeIndex
+        public IActionResult EmployeeIndex()
         {
             return View(employeesRepository.GetAll());
         }
 
-        // GET: Employees/Details/{id}
+        // GET: Employee/Details
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -32,21 +32,21 @@ namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
                 return NotFound();
             }
 
-			var book = employeesRepository.GetAll().FirstOrDefault(m => m.Id == (int)id);
-            if (book == null)
+			var employee = employeesRepository.GetAll().FirstOrDefault(m => m.Id == id);
+            if (employee == null)
             {
                 return NotFound();
             }
-            return View(book);
+            return View(employee);
         }
 
-        // GET: Employees/Create
+        // GET: Employee/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateEmployee([Bind("Id,FirstName,LastName,City,State,Country,Zip,Phone,Email")] Employee employee)
@@ -59,12 +59,12 @@ namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Edit/{id}
+        // GET: Employee/Edit/{id}
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
 			var employee = employeesRepository.Get((int)id);
@@ -75,7 +75,7 @@ namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
             return View(employee);
         }
 
-        // POST: Employees/Edit/{id}
+        // POST: Employee/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, [Bind("Id,FirstName,LastName,City,State,Country,Zip,Phone,Email")] Employee employee)
@@ -102,17 +102,17 @@ namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
                         logger.LogError(ex.Message);
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("EmployeeIndex", "Employee");
             }
             return View(employee);
         }
 
-        // GET: Employees/Delete/{id}
+        // GET: Employee/Delete
         public IActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             var employee = employeesRepository.Get((int)id);
@@ -124,7 +124,7 @@ namespace YorkHarborSeHotelVision_CoreMvcrvice.Controllers
             return View(employee);
         }
 
-        // POST: Employees/Delete/{id}
+        // POST: Employee/Delete/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
