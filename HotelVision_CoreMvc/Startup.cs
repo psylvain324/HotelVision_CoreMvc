@@ -37,7 +37,7 @@ namespace HotelVision_CoreMvc
 
             //services.AddSwaggerGen(c =>
             //{
-                //c.SwaggerDoc("v1", new OpenApiInfo { Title = "2C2P Technical Assessment", Version = "v1" });
+                //c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel Vision API", Version = "v1" });
                 //c.IncludeXmlComments(xmlPath);
             //});
 
@@ -66,7 +66,7 @@ namespace HotelVision_CoreMvc
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "2C2P Take Home API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Vision API V1");
                 //c.RoutePrefix = string.Empty;
             });
 
