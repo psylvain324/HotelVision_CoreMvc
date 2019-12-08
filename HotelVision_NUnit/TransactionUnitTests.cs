@@ -11,9 +11,11 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using OpenQA.Selenium;
 using Xunit;
+using NUnit.Framework;
 
 namespace HotelVision_NUnit
 {
+    [TestFixture]
     public class TransactionUnitTests
     {
         private readonly IWebDriver webDriver;
@@ -73,7 +75,13 @@ namespace HotelVision_NUnit
             return transactions;
         }
 
-        [Fact]
+        [SetUp]
+        public void SeleniumSetUp()
+        {
+
+        }
+
+        [Test]
         //TODO: Finish this Test.
         public void TestCsvUpload()
         {
@@ -95,6 +103,12 @@ namespace HotelVision_NUnit
             var file = fileMock.Object;
 
             transactionServiceUpload.UploadCsv(file);
+
+        }
+
+        [Fact]
+        public void TestXmlUpload()
+        {
 
         }
     }

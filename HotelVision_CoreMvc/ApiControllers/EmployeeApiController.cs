@@ -47,7 +47,7 @@ namespace HotelVision_CoreMvc.Controllers
 			}
 		}
 
-		// GET: api/Employee/{id}
+		// GET: Api/Employee/{id}
 		/// <summary>
 		/// This method returns one employee
 		/// </summary>
@@ -59,11 +59,10 @@ namespace HotelVision_CoreMvc.Controllers
 			return Ok(employeeRepository.Get(id));
 		}
 
-		// POST: api/Employee
+		// POST: Api/Employee
 		/// <summary>
 		/// The post method for adding a employee
 		/// </summary>
-		/// <param name="employee">Type of Book</param>
 		/// <returns>Created on success or appropriate code otherwise.</returns>
 		[HttpPost]
         public IActionResult Create([FromBody]Employee employee)
@@ -78,7 +77,7 @@ namespace HotelVision_CoreMvc.Controllers
 				else
 				{
 					employeeRepository.Add(employee);
-					return Created($"/api/book/{employee.Id}", employee);
+					return Created($"/Api/Employee/{employee.Id}", employee);
 				}
 			}
 			catch (Exception ex)
@@ -88,7 +87,7 @@ namespace HotelVision_CoreMvc.Controllers
 			}
         }
         
-        // PUT: api/Employee/{id}
+        // PUT: Api/Employee/{id}
 		/// <summary>
 		/// Put method to edit an existing employee.
 		/// </summary>
@@ -117,7 +116,7 @@ namespace HotelVision_CoreMvc.Controllers
 			}
 		}
         
-        // DELETE: api/ApiWithActions/5
+        // DELETE: Api/Employee/{id}
 		/// <summary>
 		/// Deletes an existing employee.
 		/// </summary>

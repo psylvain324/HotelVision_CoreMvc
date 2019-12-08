@@ -15,6 +15,7 @@ namespace HotelVision_CoreMvc.Data
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<InventoryItem> InventoryItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

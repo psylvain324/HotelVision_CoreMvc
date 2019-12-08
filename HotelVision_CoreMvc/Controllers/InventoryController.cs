@@ -2,6 +2,7 @@
 using System.Linq;
 using HotelVision_CoreMvc.Models;
 using HotelVision_CoreMvc.Services.Interfaces;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,8 +12,9 @@ namespace HotelVision_CoreMvc.Controllers
     {
         private readonly IRepository<InventoryItem> inventoryRepository;
         private readonly ILogger<InventoryController> logger;
+        private readonly IServer server;
 
-        public InventoryController(IRepository<InventoryItem> inventoryRepository, ILogger<InventoryController> logger)
+        public InventoryController(IRepository<InventoryItem> inventoryRepository, ILogger<InventoryController> logger, IServer server)
         {
             this.inventoryRepository = inventoryRepository;
             this.logger = logger;
