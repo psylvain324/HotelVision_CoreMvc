@@ -100,10 +100,7 @@ namespace HotelVision_CoreMvc.Controllers
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        logger.LogError(ex.Message);
-                    }
+                    logger.LogError(ex.Message);
                 }
                 return RedirectToAction("InventoryIndex", "Inventory");
             }

@@ -69,17 +69,14 @@ namespace HotelVision_CoreMvc.Controllers
         {
 			try
 			{
-				if(!ModelState.IsValid)
-				{
-					logger.LogError("Invalid model state.");
-					return BadRequest();
-				}
-				else
-				{
-					employeeRepository.Add(employee);
-					return Created($"/Api/Employee/{employee.Id}", employee);
-				}
-			}
+                if (!ModelState.IsValid)
+                {
+                    logger.LogError("Invalid model state.");
+                    return BadRequest();
+                }
+                employeeRepository.Add(employee);
+                return Created($"/Api/Employee/{employee.Id}", employee);
+            }
 			catch (Exception ex)
 			{
 				logger.LogError("Exception adding new employee: " + ex.Message);
@@ -98,17 +95,14 @@ namespace HotelVision_CoreMvc.Controllers
         {
 			try
 			{
-				if (!ModelState.IsValid)
-				{
-					logger.LogError("Invalid model state.");
-					return BadRequest();
-				}
-				else
-				{
-					employeeRepository.Edit(employee);
-					return Ok(employee);
-				}
-			}
+                if (!ModelState.IsValid)
+                {
+                    logger.LogError("Invalid model state.");
+                    return BadRequest();
+                }
+                employeeRepository.Edit(employee);
+                return Ok(employee);
+            }
 			catch (Exception ex)
 			{
 				logger.LogError("Exception adding new employee: " + ex.Message);

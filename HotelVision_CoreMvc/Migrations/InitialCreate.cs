@@ -10,17 +10,16 @@ namespace HotelVision_CoreMvc.Migrations
         {
             migrationBuilder.CreateTable(
                 name: "Transaction",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
+                columns: table => (
+                    Id: table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TransactionId = table.Column<int>(type: "int", nullable: false),
-                    Amount = table.Column<double>(type: "float", nullable: false),
-                    CurrencyCode = table.Column<string>(type: "nvarchar(3)", nullable: false),
-                    TransactionDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(20)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: true)
-                },
+                    TransactionId: table.Column<int>(type: "int", nullable: false),
+                    Amount: table.Column<double>(type: "float", nullable: false),
+                    CurrencyCode: table.Column<string>(type: "nvarchar(3)", nullable: false),
+                    TransactionDate: table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status: table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    CustomerId: table.Column<int>(type: "int", nullable: true)
+                ),
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transaction", x => x.Id);

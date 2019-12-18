@@ -81,7 +81,7 @@ namespace HotelVision_NUnit
 
         }
 
-        [Test]
+        [Fact]
         //TODO: Finish this Test.
         public void TestCsvUpload()
         {
