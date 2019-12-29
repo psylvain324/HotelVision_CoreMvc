@@ -21,6 +21,15 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\app\admin\overview.component.ts" />
+    <None Remove="ClientApp\src\app\admin\admin.component.ts" />
+    <None Remove="ClientApp\src\app\admin\admin.module.ts" />
+    <None Remove="ClientApp\src\app\admin\movieAdmin.component.ts" />
+    <None Remove="ClientApp\src\app\models\repository.ts" />
+    <None Remove="ClientApp\src\app\models\configClasses.repository.ts" />
+    <None Remove="ClientApp\src\app\models\studio.model.ts" />
+    <None Remove="ClientApp\src\app\models\order.model.ts" />
+    <None Remove="ClientApp\src\app\inventory\pagination.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\src\app\admin\" />
+    <Folder Include="ClientApp\src\app\models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\admin\overview.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\admin\admin.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\admin\admin.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\admin\inventoryAdmin.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\repository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\configClasses.repository.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\inventory-item.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\inventory\pagination.component.ts" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
