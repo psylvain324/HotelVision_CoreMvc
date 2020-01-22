@@ -8,6 +8,7 @@ export class AdminComponent {
     constructor(private repo: Repository) {
         repo.filter.reset();
         repo.filter.related = true;
-        this.repo.getInventoryItems();
+      this.repo.getInventoryItems();
+      this.repo.get
     }
 }

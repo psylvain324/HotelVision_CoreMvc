@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
+    <PackageReference Include="AngularJS.Core" Version="1.7.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +31,20 @@
     <None Remove="ClientApp\src\app\models\studio.model.ts" />
     <None Remove="ClientApp\src\app\models\order.model.ts" />
     <None Remove="ClientApp\src\app\inventory\pagination.component.ts" />
+    <None Remove="ClientApp\src\app\admin\banquetAdmin.ts" />
+    <None Remove="ClientApp\src\app\admin\inventoryAdmin.component.ts" />
+    <None Remove="ClientApp\src\app\banquets\banquet.component" />
+    <None Remove="ClientApp\src\app\banquets\pagination.component.ts" />
+    <None Remove="ClientApp\src\app\models\banquet.model.ts" />
+    <None Remove="ClientApp\src\app\models\guest.model.ts" />
+    <None Remove="ClientApp\src\app-routing.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HotelVision_CoreMvc\HotelVision_CoreMvc.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\HotelVision_React_Redux\HotelVision_React_Redux.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
@@ -43,6 +54,8 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\admin\" />
     <Folder Include="ClientApp\src\app\models\" />
+    <Folder Include="ClientApp\src\app\banquets\" />
+    <Folder Include="ClientApp\src\app\properties\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\admin\overview.component.ts" />
@@ -53,6 +66,17 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\configClasses.repository.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\inventory-item.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\inventory\pagination.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\admin\banquetAdmin.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\banquets\banquet.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\banquets\pagination.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\banquet.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\guest.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app-routing.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ClientApp\src\app\models\inventory-item.model.ts">
+      <IncludeInPackage>false</IncludeInPackage>
+    </None>
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

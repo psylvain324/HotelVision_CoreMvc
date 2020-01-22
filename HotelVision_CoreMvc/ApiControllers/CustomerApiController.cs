@@ -102,12 +102,12 @@ namespace HotelVision_CoreMvc.ApiControllers
         }
 
         /// <summary>
-        /// PUT: Customer
+        /// POST: Customer
         /// </summary>
         /// <param name="customer"></param>
         /// <response code="201">Returns the newly created Customer</response>
         /// <response code="400">If the Customer is null or invalid</response>            
-        [HttpPut]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ValidateAntiForgeryToken]

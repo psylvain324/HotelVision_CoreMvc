@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { BanquetComponent } from './banquets/banquet.component';
 
 @NgModule({
   declarations: [

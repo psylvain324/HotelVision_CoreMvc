@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  hotelvision_coremvc:
+    image: ${DOCKER_REGISTRY-}hotelvisioncoremvc
+    build:
+      context: .
+      dockerfile: HotelVision_CoreMvc/Dockerfile
