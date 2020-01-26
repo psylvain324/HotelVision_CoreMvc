@@ -5,7 +5,7 @@
         description: `A blog that shows you the power of Travel Vision.`,
         social: {
             twitter: `travel-vision`,
-            fabecook: 
+            facebook: 'test',
         },
     },
     plugins: [
