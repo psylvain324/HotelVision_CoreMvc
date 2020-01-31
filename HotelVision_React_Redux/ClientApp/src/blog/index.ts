@@ -1,9 +1,7 @@
 import * as BlogPosts from './BlogPost';
-import * as Counter from './Counter';
 
 // The top-level state object
 export interface ApplicationState {
-    counter: Counter.CounterState | undefined;
     BlogPosts: BlogPosts.BlogPostsState | undefined;
 }
 
@@ -11,7 +9,6 @@ export interface ApplicationState {
 // the reducer with the matching name. It's important that the names match exactly, and that the reducer
 // acts on the corresponding ApplicationState property type.
 export const reducers = {
-    counter: Counter.reducer,
     BlogPosts: BlogPosts.reducer
 };
 

@@ -33,7 +33,7 @@ namespace HotelVision_CoreMvc.Services
                 try
                 {
                     using (var reader = new StreamReader(file.OpenReadStream()))
-                    using (var csv = new CsvReader(reader))
+                    using (var csv = new CsvReader(reader, new CultureInfo(0)))
                     {
                         var customers = new List<Customer>();
                         csv.Read();

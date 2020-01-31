@@ -4,7 +4,7 @@ import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 // Components
-import Layout from '../components/layout';
+import Layout from '../components/BlogLayout';
 import SEO from '../components/seo';
 
 const options = {

@@ -34,11 +34,11 @@ namespace HotelVision_CoreMvc
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             services.AddControllers();
             services.AddMvc();
-            services.Configure<Settings>(options =>
+            /*services.Configure<Settings>(options =>
             {
-                options.ConnectionString= Configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
                 options.Database = Configuration.GetSection("MongoConnection:Database").Value;
-            });
+            });*/
 
             //services.AddSwaggerGen(c =>
             //{

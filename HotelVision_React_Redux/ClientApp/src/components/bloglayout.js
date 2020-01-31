@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Layout extends React.Component {
+class BlogLayout extends React.Component {
   render() {
     const { title, subtitle, children } = this.props
 
@@ -10,7 +10,9 @@ class Layout extends React.Component {
           <h1>
             {title}
           </h1>
-          <p>{subtitle}</p>
+          <p>
+            {subtitle}
+          </p>
         </header>
         <main>{children}</main>
         <footer>
