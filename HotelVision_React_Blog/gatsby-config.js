@@ -19,7 +19,7 @@
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Starter Blog`,
+                name: `Travel Vision Blog`,
                 short_name: `Blog`,
                 start_url: `/`,
                 background_color: `#f7f0eb`,

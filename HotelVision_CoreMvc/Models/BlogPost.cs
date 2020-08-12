@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace HotelVision_CoreMvc.Models
 {
@@ -18,5 +19,9 @@ namespace HotelVision_CoreMvc.Models
         public string Post { get; set; }
 
         public string Summary { get; set; }
+
+        public IFormFile PostImage { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

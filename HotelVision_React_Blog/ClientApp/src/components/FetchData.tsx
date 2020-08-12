@@ -26,7 +26,7 @@ class FetchData extends React.PureComponent<BlogPostProps> {
   public render() {
     return (
       <React.Fragment>
-        <h1 id="tabelLabel">Weather forecast</h1>
+        <h1 id="tabelLabel">Blog Post Data</h1>
         <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
         {this.renderForecastsTable()}
         {this.renderPagination()}

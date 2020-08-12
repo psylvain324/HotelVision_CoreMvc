@@ -93,26 +93,8 @@ namespace HotelVision_CoreMvc.Controllers
             return View(currency);
         }
 
-        //GET: Currency/CurrencyDelete
-        [Route("/CurrencyDelete")]
-        public async Task<IActionResult> CurrencyDelete(int? id)
-        {
-            if (id == null)
-            {
-                return BadRequest();
-            }
-
-            var currency = await databaseContext.Currencies.SingleOrDefaultAsync(m => m.Id == id).ConfigureAwait(false);
-            if (currency == null)
-            {
-                return NotFound();
-            }
-
-            return View(currency);
-        }
-
         //POST: Currency/CurrencyDelete
-        [HttpPost, ActionName("CurrencyDelete")]
+        [HttpPost, ActionName("/CurrencyDelete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CurrencyConfirmDelete(int id)
         {

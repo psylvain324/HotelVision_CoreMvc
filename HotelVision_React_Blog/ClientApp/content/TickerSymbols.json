@@ -1,0 +1,64 @@
+﻿{
+  "symbols": [
+    {
+      "proName": "OANDA:SPX500USD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "OANDA:NAS100USD",
+      "title": "Nasdaq 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR/USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "BTC/USD"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "ETH/USD"
+    },
+    {
+      "description": "GBP/USD",
+      "proName": "FX:EURGBP"
+    },
+    {
+      "description": "PNC",
+      "proName": "NYSE:PNC"
+    },
+    {
+      "description": "TESLA",
+      "proName": "NASDAQ:TSLA"
+    },
+    {
+      "description": "APPLE",
+      "proName": "NASDAQ:AAPL"
+    },
+    {
+      "description": "AMAZON",
+      "proName": "NASDAQ:AMZN"
+    },
+    {
+      "description": "HEINZ",
+      "proName": "NASDAQ:KHC"
+    },
+    {
+      "description": "MICROSOFT",
+      "proName": "NASDAQ:MSFT"
+    },
+    {
+      "description": "LTC/USD",
+      "proName": "BINANCE:LTCUSDT"
+    },
+    {
+      "description": "XRP/USD",
+      "proName": "BITFINEX:XRPUSD"
+    },
+    {
+      "description": "BOEING",
+      "proName": "NYSE:BA"
+    }
+  ]
+}

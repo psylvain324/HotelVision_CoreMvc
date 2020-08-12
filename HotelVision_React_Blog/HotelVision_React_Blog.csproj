@@ -11,7 +11,7 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'HotelVision_React_Redux' ">
     <StartAction>Project</StartAction>
-    <ApplicationURL>http://localhost:5000</ApplicationURL>
+    <ApplicationURL>http://localhost:5002</ApplicationURL>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="GraphQL" Version="2.4.0" />
@@ -24,12 +24,12 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
-    <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     <None Remove="ClientApp\public\error.html" />
     <None Remove="ClientApp\src\blog\Counter.ts" />
     <None Remove="ClientApp\src\components\Counter.tsx" />
     <Content Remove="appsettings.json" />
+    <None Include="$(SpaRoot)**" />
   </ItemGroup>
 
   <ItemGroup>
