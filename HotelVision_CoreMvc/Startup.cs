@@ -14,6 +14,7 @@ using HotelVision_CoreMvc.Models;
 using HotelVision_CoreMvc.Services;
 using HotelVision_CoreMvc.Services.Interfaces;
 using System;
+using HotelVision_CoreMvc.Repositories;
 
 namespace HotelVision_CoreMvc
 {
@@ -34,27 +35,13 @@ namespace HotelVision_CoreMvc
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             services.AddControllers();
             services.AddMvc();
-            /*services.Configure<Settings>(options =>
-            {
-                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
-            });*/
-
-            //services.AddSwaggerGen(c =>
-            //{
-            //c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotel Vision API", Version = "v1" });
-            //c.IncludeXmlComments(xmlPath);
-            //});
 
             services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson();
             services.AddDbContext<DatabaseContext>(options => options.UseInMemoryDatabase(databaseName: "TechnicalAssessmentDb"));
             services.AddScoped<IServiceUpload<Customer>, CustomerUploadService>();
             services.AddScoped<IServiceUpload<Transaction>, TransactionUploadService>();
             services.AddScoped<IServiceExport<Transaction>, TransactionExportService>();
-
-            //TODO: For use of external database - Configure Azure Database
-            //services.AddDbContext<DatabaseContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<SqlInventoryRepository, SqlInventoryRepository>();
         }
 
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env, DatabaseContext databaseContext)
@@ -68,13 +55,6 @@ namespace HotelVision_CoreMvc
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel Vision API V1");
-                //c.RoutePrefix = string.Empty;
-            });
-
             app.UseMvc();
             app.UseStaticFiles(new StaticFileOptions() { FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")) });
             app.UseMvc(routes =>
@@ -85,7 +65,6 @@ namespace HotelVision_CoreMvc
             });
 
             DataGenerator.Initialize(databaseContext);
-            //TODO: Create App Identity User & Role Context
 
         }
     }

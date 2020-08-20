@@ -9,7 +9,6 @@ using HotelVision_CoreMvc.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Moq;
-using OpenQA.Selenium;
 using Xunit;
 using NUnit.Framework;
 
@@ -18,15 +17,13 @@ namespace HotelVision_NUnit
     [TestFixture]
     public class TransactionUnitTests
     {
-        private readonly IWebDriver webDriver;
         private readonly DatabaseContext databaseContext;
         private readonly IServiceUpload<Transaction> transactionServiceUpload;
         private readonly ILogger<TransactionController> logger;
 
-        public TransactionUnitTests(IWebDriver webDriver, DatabaseContext databaseContext,
+        public TransactionUnitTests(DatabaseContext databaseContext,
             IServiceUpload<Transaction> transactionServiceUpload, ILogger<TransactionController> logger)
         {
-            this.webDriver = webDriver;
             this.databaseContext = databaseContext;
             this.transactionServiceUpload = transactionServiceUpload;
             this.logger = logger;
@@ -73,12 +70,6 @@ namespace HotelVision_NUnit
             };
 
             return transactions;
-        }
-
-        [SetUp]
-        public void SeleniumSetUp()
-        {
-
         }
 
         [Fact]

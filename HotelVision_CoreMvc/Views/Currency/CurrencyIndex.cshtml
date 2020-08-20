@@ -44,7 +44,7 @@ else
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CurrencyId)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CountryCode)
@@ -53,7 +53,7 @@ else
                 @Html.DisplayFor(modelItem => item.CurrencyCode)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.CurrencyId">Details</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
     }

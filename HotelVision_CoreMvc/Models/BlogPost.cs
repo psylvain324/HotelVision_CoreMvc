@@ -20,8 +20,6 @@ namespace HotelVision_CoreMvc.Models
 
         public string Summary { get; set; }
 
-        public IFormFile PostImage { get; set; }
-
         public string ImageUrl { get; set; }
     }
 }

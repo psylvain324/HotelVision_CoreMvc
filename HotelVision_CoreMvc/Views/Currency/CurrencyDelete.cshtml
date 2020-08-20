@@ -14,7 +14,7 @@
     </tr>
     <tr class="dl-horizontal">
         <td>
-            @Html.DisplayNameFor(model => model.CurrencyId)
+            @Html.DisplayNameFor(model => model.Id)
         </td>
         <td>
             @Html.DisplayFor(model => model.CurrencyCode)
@@ -27,7 +27,7 @@
 <div>
     <form asp-controller="Customer" asp-action="CustomerDelete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" asp-controller="Currency" asp-action="CurrencyDelete" asp-for="CurrencyId" asp-route-id="@Model.CurrencyId" />
+            <input type="submit" value="Delete" asp-controller="Currency" asp-action="CurrencyDelete" asp-for="Id" asp-route-id="@Model.Id" />
             <a asp-controller="Customer" asp-action="CustomerIndex">Back to List</a>
         </div>
     </form>

@@ -1,29 +1,37 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using HotelVision_CoreMvc.Data;
 using HotelVision_CoreMvc.Models;
-using HotelVision_CoreMvc.Services.Interfaces;
+using HotelVision_CoreMvc.Models.ViewModels;
+using HotelVision_CoreMvc.Repositories;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace HotelVision_CoreMvc.Controllers
 {
     public class InventoryController : Controller
     {
-        private readonly IRepository<InventoryItem> inventoryRepository;
+        private readonly SqlInventoryRepository inventoryRepository;
+        private readonly DatabaseContext databaseContext;
         private readonly ILogger<InventoryController> logger;
         private readonly IServer server;
 
-        public InventoryController(IRepository<InventoryItem> inventoryRepository, ILogger<InventoryController> logger, IServer server)
+        public InventoryController(SqlInventoryRepository inventoryRepository, DatabaseContext databaseContext,
+            ILogger<InventoryController> logger, IServer server)
         {
             this.inventoryRepository = inventoryRepository;
+            this.databaseContext = databaseContext;
             this.logger = logger;
         }
 
         // GET: InventoryIndex
-        public IActionResult InventoryIndex()
+        public async Task<IActionResult> InventoryIndex(int? pageNumber)
         {
-            return View(inventoryRepository.GetAll());
+            var inventoryItems = from i in databaseContext.InventoryItems select i;
+            return View(await PaginatedList<InventoryItem>.CreateAsync(inventoryItems.AsNoTracking(), pageNumber ?? 1, 10));
         }
 
         // GET: Inventory/InventoryDetails

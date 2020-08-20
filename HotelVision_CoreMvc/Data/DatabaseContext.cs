@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using HotelVision_CoreMvc.Models;
+﻿using HotelVision_CoreMvc.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelVision_CoreMvc.Data
@@ -18,7 +17,6 @@ namespace HotelVision_CoreMvc.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<InventoryItem> InventoryItems { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
-        public DbSet<MailMessage> Emails { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
